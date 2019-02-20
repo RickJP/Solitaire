@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 221753726}
   - component: {fileID: 221753728}
   - component: {fileID: 221753727}
+  - component: {fileID: 221753729}
   m_Layer: 0
   m_Name: Bottom5
   m_TagString: Bottom
@@ -240,6 +241,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.07, y: 6.8}
   m_EdgeRadius: 0
+--- !u!114 &221753729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221753724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e99d3c82a774f7088fdc894b4b055a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  top: 0
+  faceUp: 0
+  inDeckPile: 0
+  suit: 
+  value: 0
+  row: 5
 --- !u!1 &237019244
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d11c54430def4e23acfefea7a04ae40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slot1: {fileID: 0}
 --- !u!114 &248562326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,6 +500,7 @@ MonoBehaviour:
   - {fileID: 371178779}
   tripsOnDisplay: []
   deck: []
+  discardPile: []
 --- !u!4 &248562327
 Transform:
   m_ObjectHideFlags: 0
@@ -506,6 +527,7 @@ GameObject:
   - component: {fileID: 371178781}
   - component: {fileID: 371178783}
   - component: {fileID: 371178782}
+  - component: {fileID: 371178784}
   m_Layer: 0
   m_Name: Top3
   m_TagString: Top
@@ -622,6 +644,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &371178784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371178779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e99d3c82a774f7088fdc894b4b055a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  top: 1
+  faceUp: 0
+  inDeckPile: 0
+  suit: 
+  value: 0
+  row: 3
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,6 +790,7 @@ GameObject:
   - component: {fileID: 673583001}
   - component: {fileID: 673583003}
   - component: {fileID: 673583002}
+  - component: {fileID: 673583004}
   m_Layer: 0
   m_Name: Top2
   m_TagString: Top
@@ -866,6 +907,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &673583004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673582999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e99d3c82a774f7088fdc894b4b055a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  top: 1
+  faceUp: 0
+  inDeckPile: 0
+  suit: 
+  value: 0
+  row: 2
 --- !u!1 &725162855
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,6 +937,7 @@ GameObject:
   - component: {fileID: 725162857}
   - component: {fileID: 725162859}
   - component: {fileID: 725162858}
+  - component: {fileID: 725162860}
   m_Layer: 0
   m_Name: Top1
   m_TagString: Top
@@ -994,6 +1054,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &725162860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725162855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e99d3c82a774f7088fdc894b4b055a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  top: 1
+  faceUp: 0
+  inDeckPile: 0
+  suit: 
+  value: 0
+  row: 1
 --- !u!1 &813900072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,6 +1084,7 @@ GameObject:
   - component: {fileID: 813900074}
   - component: {fileID: 813900076}
   - component: {fileID: 813900075}
+  - component: {fileID: 813900077}
   m_Layer: 0
   m_Name: Bottom2
   m_TagString: Bottom
@@ -1122,6 +1201,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.07, y: 6.8}
   m_EdgeRadius: 0
+--- !u!114 &813900077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813900072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e99d3c82a774f7088fdc894b4b055a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  top: 0
+  faceUp: 0
+  inDeckPile: 0
+  suit: 
+  value: 0
+  row: 2
 --- !u!1 &898083733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,6 +1231,7 @@ GameObject:
   - component: {fileID: 898083735}
   - component: {fileID: 898083737}
   - component: {fileID: 898083736}
+  - component: {fileID: 898083738}
   m_Layer: 0
   m_Name: Bottom3
   m_TagString: Bottom
@@ -1250,6 +1348,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.07, y: 6.8}
   m_EdgeRadius: 0
+--- !u!114 &898083738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898083733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e99d3c82a774f7088fdc894b4b055a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  top: 0
+  faceUp: 0
+  inDeckPile: 0
+  suit: 
+  value: 0
+  row: 3
 --- !u!1 &908168605
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,6 +1378,7 @@ GameObject:
   - component: {fileID: 908168607}
   - component: {fileID: 908168609}
   - component: {fileID: 908168608}
+  - component: {fileID: 908168610}
   m_Layer: 0
   m_Name: Bottom0
   m_TagString: Bottom
@@ -1378,6 +1495,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.07, y: 6.8}
   m_EdgeRadius: 0
+--- !u!114 &908168610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908168605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e99d3c82a774f7088fdc894b4b055a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  top: 0
+  faceUp: 0
+  inDeckPile: 0
+  suit: 
+  value: 0
+  row: 0
 --- !u!1 &978819965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,6 +1525,7 @@ GameObject:
   - component: {fileID: 978819967}
   - component: {fileID: 978819969}
   - component: {fileID: 978819968}
+  - component: {fileID: 978819970}
   m_Layer: 0
   m_Name: Bottom4
   m_TagString: Bottom
@@ -1506,6 +1642,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.07, y: 6.8}
   m_EdgeRadius: 0
+--- !u!114 &978819970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978819965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e99d3c82a774f7088fdc894b4b055a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  top: 0
+  faceUp: 0
+  inDeckPile: 0
+  suit: 
+  value: 0
+  row: 4
 --- !u!1 &1448957352
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,6 +1672,7 @@ GameObject:
   - component: {fileID: 1448957354}
   - component: {fileID: 1448957356}
   - component: {fileID: 1448957355}
+  - component: {fileID: 1448957357}
   m_Layer: 0
   m_Name: Top0
   m_TagString: Top
@@ -1634,6 +1789,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1448957357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448957352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e99d3c82a774f7088fdc894b4b055a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  top: 1
+  faceUp: 0
+  inDeckPile: 0
+  suit: 
+  value: 0
+  row: 0
 --- !u!1 &1495096704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,6 +1887,7 @@ GameObject:
   - component: {fileID: 1731479495}
   - component: {fileID: 1731479497}
   - component: {fileID: 1731479496}
+  - component: {fileID: 1731479498}
   m_Layer: 0
   m_Name: Bottom1
   m_TagString: Bottom
@@ -1830,6 +2004,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.07, y: 6.8}
   m_EdgeRadius: 0
+--- !u!114 &1731479498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731479493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e99d3c82a774f7088fdc894b4b055a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  top: 0
+  faceUp: 0
+  inDeckPile: 0
+  suit: 
+  value: 0
+  row: 1
 --- !u!1 &2133126370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1842,6 +2034,7 @@ GameObject:
   - component: {fileID: 2133126372}
   - component: {fileID: 2133126374}
   - component: {fileID: 2133126373}
+  - component: {fileID: 2133126375}
   m_Layer: 0
   m_Name: Bottom6
   m_TagString: Bottom
@@ -1958,6 +2151,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.07, y: 6.8}
   m_EdgeRadius: 0
+--- !u!114 &2133126375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133126370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e99d3c82a774f7088fdc894b4b055a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  top: 0
+  faceUp: 0
+  inDeckPile: 0
+  suit: 
+  value: 0
+  row: 6
 --- !u!1 &1963778096280909342 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1963778096280909342, guid: b383ff450473ace4cbbd85429fa03541,
@@ -2076,6 +2287,11 @@ PrefabInstance:
     - target: {fileID: 5814590818786230821, guid: b383ff450473ace4cbbd85429fa03541,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364775883106725951, guid: b383ff450473ace4cbbd85429fa03541,
+        type: 3}
+      propertyPath: top
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

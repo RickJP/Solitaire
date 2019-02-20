@@ -60,6 +60,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\PRO\__ScoreKeeper.cs" />
+    <Compile Include="Assets\Scripts\PRO\__Selectable.cs" />
+    <Compile Include="Assets\Scripts\PRO\__Solitaire.cs" />
+    <Compile Include="Assets\Scripts\PRO\__UIButtons.cs" />
+    <Compile Include="Assets\Scripts\PRO\__UpdateSprite.cs" />
+    <Compile Include="Assets\Scripts\PRO\__UserInput.cs" />
     <Compile Include="Assets\Scripts\Selectable.cs" />
     <Compile Include="Assets\Scripts\Solitaire.cs" />
     <Compile Include="Assets\Scripts\UpdateSprite.cs" />

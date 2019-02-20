@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class UserInput : MonoBehaviour
 {
@@ -41,12 +42,12 @@ public class UserInput : MonoBehaviour
             else if (hit.collider.CompareTag("Top"))
             {
                 // clicked card
-                Top();
+                Top(hit.collider.gameObject);
             }
             else if (hit.collider.CompareTag("Bottom"))
             {
                 // clicked card
-                Bottom();
+                Bottom(hit.collider.gameObject);
             }
         }
     }
@@ -61,17 +62,35 @@ public class UserInput : MonoBehaviour
     {
         print("Clicked Card");
 
-        // if the card clicked on is facedown
-            // if the card clicked on is not blocked
+        if (!selected.GetComponent<Selectable>().faceUp)  // if the card clicked on is facedown
+        {
+            if (!Blocked(selected))
+            {
+                // if the card clicked on is not blocked
                 // flip it over
 
-        //  if the card clicked on is in the deck pile with the trips
+                selected.GetComponent<Selectable>().faceUp = true;
+                slot1 = this.gameObject;
+            }
+        }
+        else if (selected.GetComponent<Selectable>().inDeckPile)  // if the card clicked on is in the deck pile with the trips
+        {
             // if it is not blocked
-                // select it
+            // select it
+            if (!Blocked(selected))
+            {
+                slot1 = selected;
+            }
+        }
+
+
+
+
+
 
         // if the card is face up
-            // if there is no card currently selected
-                // select the card
+        // if there is no card currently selected
+        // select the card
 
         if (slot1 == this.gameObject)  // not null because we pass in this gameObject
         {
@@ -85,7 +104,7 @@ public class UserInput : MonoBehaviour
         {
             if (Stackable(selected))
             {
-                // stack it
+                Stack(selected);
             }
 
             else
@@ -100,67 +119,177 @@ public class UserInput : MonoBehaviour
         // if the card is eligible to fly up to the top, then do it
     }
 
-    void Top()
+    void Top(GameObject selected)
     {
         print("Clicked Top");
+
+        if (slot1.CompareTag("Card"))
+        {
+            // if the card is an ace and the empy slot is top then stack
+            if (slot1.GetComponent<Selectable>().value == 1)
+            {
+                Stack(selected);
+            }
+        }
     }
 
-    void Bottom()
+    void Bottom(GameObject selected)
     {
         print("Clicked Bottom");
+
+        // if the card is king and the empty slot is bottom, then stack
+
+        if (slot1.CompareTag("Card"))
+        {
+            if (slot1.GetComponent<Selectable>().value == 13)
+            {
+                Stack(selected);
+            }
+        }
     }
 
     bool Stackable(GameObject selected)
     {
+
         Selectable s1 = slot1.GetComponent<Selectable>();
         Selectable s2 = selected.GetComponent<Selectable>();
 
         // compare them to see if they stack
 
-        // if in the top pile, must stack suited Ace to King
-        if (s2.top)
+        if (!s2.inDeckPile)
         {
-            if (s1.suit == s2.suit || (s1.value == 1 && s2.suit == null))
+            // if in the top pile, must stack suited Ace to King
+            if (s2.top)
             {
-                if (s1.value == s2.value + 1)
+                if (s1.suit == s2.suit || (s1.value == 1 && s2.suit == null))
                 {
-                    return true;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else    // if in the bottom pile, must stack alternate colors King to Ace
-        {
-            if (s1.value == s2.value - 1) 
-            {
-                bool card1Red = true;
-                bool card2Red = true;
-
-                if (s1.suit == "C" || s1.suit == "S")
-                {
-                    card2Red = false;
-                }
-                if (s2.suit == "C" || s2.suit == "S")
-                {
-                    card2Red = false;
-                }
-
-                if (card1Red == card2Red)
-                {
-                    print("Not stackable");
-                    return false;
+                    if (s1.value == s2.value + 1)
+                    {
+                        return true;
+                    }
                 }
                 else
                 {
-                    print("Stakable");
-                    return true;
+                    return false;
                 }
-            } 
+            }
+            else    // if in the bottom pile, must stack alternate colors King to Ace
+            {
+                if (s1.value == s2.value - 1)
+                {
+                    bool card1Red = true;
+                    bool card2Red = true;
+
+                    if (s1.suit == "C" || s1.suit == "S")
+                    {
+                        card2Red = false;
+                    }
+                    if (s2.suit == "C" || s2.suit == "S")
+                    {
+                        card2Red = false;
+                    }
+
+                    if (card1Red == card2Red)
+                    {
+                        print("Not stackable");
+                        return false;
+                    }
+                    else
+                    {
+                        print("Stakable");
+                        return true;
+                    }
+                }
+            }
+
         }
         return false;
+    }
+
+    void Stack(GameObject selected)
+    {
+        // if on top of king or empty bottom, stack the cards in place
+        // else stack the cards with a negative y offset
+        Selectable s1 = slot1.GetComponent<Selectable>();
+        Selectable s2 = selected.GetComponent<Selectable>();
+        float yOffset = 0.3f;
+
+
+        if (s2.top || (!s2.top && s1.value == 13))
+        {
+            yOffset = 0;
+        }
+
+        slot1.transform.position = new Vector3(selected.transform.position.x, selected.transform.position.y -yOffset, selected.transform.position.z - 0.01f);
+        slot1.transform.parent = selected.transform; // this makes the children move with the parent
+
+        if (s1.inDeckPile)
+        {
+            solitaire.tripsOnDisplay.Remove(slot1.name);
+        }
+        else if (s1.top && s2.top && s1.value == 1)
+        {
+            solitaire.topPos[s1.row].GetComponent<Selectable>().value = 0;
+            solitaire.topPos[s1.row].GetComponent<Selectable>().suit = null;
+        }
+        else if (s1.top)
+        {
+            solitaire.topPos[s1.row].GetComponent<Selectable>().value = s1.value - 1;
+        }
+        else
+        {
+            solitaire.bottoms[s1.row].Remove(slot1.name);
+        }
+
+        s1.inDeckPile = false;
+        s1.row = s2.row;
+
+        if (s2.top)
+        {
+            solitaire.topPos[s1.row].GetComponent<Selectable>().value = s1.value;
+            solitaire.topPos[s1.row].GetComponent<Selectable>().suit = s1.suit;
+            s1.top = true;
+        }
+        else
+        {
+            s1.top = false;
+        }
+
+        // after completing move, reset slot1 to be essentially null
+        // as being null be break the logic
+
+
+        slot1 = this.gameObject; 
+    }
+
+    bool Blocked(GameObject selected)
+    {
+        Selectable s2 = selected.GetComponent<Selectable>();
+
+        if (s2.inDeckPile == true)
+        {
+            if (s2.name == solitaire.tripsOnDisplay.Last())  // if it is the last trip, it is not blocked
+            {
+                return false;
+            }
+            else
+            {
+                print(s2.name + " is blocked by " + solitaire.tripsOnDisplay.Last());
+                return true;
+
+            }
+        }
+        else
+        {
+            if (s2.name == solitaire.bottoms[s2.row].Last())  // check if it is the bottom card
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }
 
