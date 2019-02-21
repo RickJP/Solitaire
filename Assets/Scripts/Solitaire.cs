@@ -40,24 +40,24 @@ public class Solitaire : MonoBehaviour
         PlayCards();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     public void PlayCards()
     {
+
+        foreach (List<string> list in bottoms)
+        {
+            list.Clear();
+        }
+
         deck = GenerateDeck();
         Shuffle(deck);
 
         // Test the cards in the stack
 
-        foreach (string card in deck)
-        {
-            print(card);
-        }
+        //foreach (string card in deck)
+        //{
+        //    print(card);
+        //}
 
         SolitaireSort();
         StartCoroutine(SolitaireDeal());
@@ -76,7 +76,6 @@ public class Solitaire : MonoBehaviour
                 newDeck.Add(s + v);
             }
         }
-
         return newDeck;
     }
 
@@ -100,12 +99,12 @@ public class Solitaire : MonoBehaviour
 
         for (int i = 0; i < 7; i++)
         {
-            float yOffset = 0f;
+            float yOffset = 0;
             float zOffset = 0.03f;
 
             foreach (string card in bottoms[i])
             {
-                yield return new WaitForSeconds(0.01f);
+                yield return new WaitForSeconds(0.05f);
                 GameObject newCard = Instantiate(cardPrefab, new Vector3(bottomPos[i].transform.position.x, bottomPos[i].transform.position.y - yOffset, bottomPos[i].transform.position.z - zOffset), Quaternion.identity, bottomPos[i].transform);
                 newCard.name = card;
                 newCard.GetComponent<Selectable>().row = i;
@@ -113,8 +112,6 @@ public class Solitaire : MonoBehaviour
                 {
                     newCard.GetComponent<Selectable>().faceUp = true;
                 }
-
-
                 yOffset += 0.3f;
                 zOffset += 0.03f;
                 discardPile.Add(card);
@@ -129,7 +126,6 @@ public class Solitaire : MonoBehaviour
             }
         }
         discardPile.Clear();
-
     }
 
 
@@ -149,7 +145,6 @@ public class Solitaire : MonoBehaviour
     {
         trips = deck.Count / 3;
         tripsRemainder = deck.Count % 3;
-
         deckTrips.Clear();
 
         int modifier = 0;
@@ -209,7 +204,6 @@ public class Solitaire : MonoBehaviour
                         Quaternion.identity, deckButton.transform);
                 xOffset += 0.5f;
                 zOffset -= 0.2f;
-
                 newTopCard.name = card;
                 tripsOnDisplay.Add(card);
                 newTopCard.GetComponent<Selectable>().faceUp = true;

@@ -7,7 +7,6 @@ public class Selectable : MonoBehaviour
     public bool top = false;
     public bool faceUp = false;
     public bool inDeckPile = false;
-
     public string suit;
     public int value;
     public int row;
@@ -80,11 +79,5 @@ public class Selectable : MonoBehaviour
                 value = 13;
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -6,7 +6,6 @@ public class UpdateSprite : MonoBehaviour
 {
     public Sprite cardFace;
     public Sprite cardBack;
-
     private SpriteRenderer spriteRenderer;
     private Selectable selectable;
     private Solitaire solitaire;
@@ -27,7 +26,6 @@ public class UpdateSprite : MonoBehaviour
                 cardFace = solitaire.cardFaces[i];
                 break;
             }
-
             i++;
         }
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -57,7 +55,5 @@ public class UpdateSprite : MonoBehaviour
                 spriteRenderer.color = Color.white;
             }
         }
-
-
     }
 }

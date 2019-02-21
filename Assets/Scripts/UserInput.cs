@@ -49,26 +49,29 @@ public class UserInput : MonoBehaviour
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -10));
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-            if (hit.collider.CompareTag("Deck"))
+            if (hit)
             {
-                // clicked deck
-                Deck();
-            }
-            else if (hit.collider.CompareTag("Card"))
-            {
-                // clicked card
-                Card(hit.collider.gameObject);
-            }
+                if (hit.collider.CompareTag("Deck"))
+                {
+                    // clicked deck
+                    Deck();
+                }
+                else if (hit.collider.CompareTag("Card"))
+                {
+                    // clicked card
+                    Card(hit.collider.gameObject);
+                }
 
-            else if (hit.collider.CompareTag("Top"))
-            {
-                // clicked card
-                Top(hit.collider.gameObject);
-            }
-            else if (hit.collider.CompareTag("Bottom"))
-            {
-                // clicked card
-                Bottom(hit.collider.gameObject);
+                else if (hit.collider.CompareTag("Top"))
+                {
+                    // clicked card
+                    Top(hit.collider.gameObject);
+                }
+                else if (hit.collider.CompareTag("Bottom"))
+                {
+                    // clicked card
+                    Bottom(hit.collider.gameObject);
+                }
             }
         }
     }
@@ -186,10 +189,8 @@ public class UserInput : MonoBehaviour
 
     bool Stackable(GameObject selected)
     {
-
         Selectable s1 = slot1.GetComponent<Selectable>();
         Selectable s2 = selected.GetComponent<Selectable>();
-
         // compare them to see if they stack
 
         if (!s2.inDeckPile)
@@ -218,7 +219,7 @@ public class UserInput : MonoBehaviour
 
                     if (s1.suit == "C" || s1.suit == "S")
                     {
-                        card2Red = false;
+                        card1Red = false;
                     }
                     if (s2.suit == "C" || s2.suit == "S")
                     {
@@ -259,28 +260,28 @@ public class UserInput : MonoBehaviour
         slot1.transform.position = new Vector3(selected.transform.position.x, selected.transform.position.y - yOffset, selected.transform.position.z - 0.01f);
         slot1.transform.parent = selected.transform; // this makes the children move with the parent
 
-        if (s1.inDeckPile)
+        if (s1.inDeckPile) // removes the cards from the top pile to prevent duplicate cards
         {
             solitaire.tripsOnDisplay.Remove(slot1.name);
         }
-        else if (s1.top && s2.top && s1.value == 1)
+        else if (s1.top && s2.top && s1.value == 1)  // allows movement of cards between top spots
         {
             solitaire.topPos[s1.row].GetComponent<Selectable>().value = 0;
             solitaire.topPos[s1.row].GetComponent<Selectable>().suit = null;
         }
-        else if (s1.top)
+        else if (s1.top)  // keeps track of the current value of the top decks as a card has been removed 
         {
             solitaire.topPos[s1.row].GetComponent<Selectable>().value = s1.value - 1;
         }
-        else
+        else  // removes the card string from the appropriate bottom list
         {
             solitaire.bottoms[s1.row].Remove(slot1.name);
         }
 
-        s1.inDeckPile = false;
+        s1.inDeckPile = false;   // you cannot add cards to the trips pile so this is always fine
         s1.row = s2.row;
 
-        if (s2.top)
+        if (s2.top)  // moves a card to the top and assigns the top's value and suit
         {
             solitaire.topPos[s1.row].GetComponent<Selectable>().value = s1.value;
             solitaire.topPos[s1.row].GetComponent<Selectable>().suit = s1.suit;
@@ -293,8 +294,6 @@ public class UserInput : MonoBehaviour
 
         // after completing move, reset slot1 to be essentially null
         // as being null be break the logic
-
-
         slot1 = this.gameObject;
     }
 
@@ -312,7 +311,6 @@ public class UserInput : MonoBehaviour
             {
                 print(s2.name + " is blocked by " + solitaire.tripsOnDisplay.Last());
                 return true;
-
             }
         }
         else
@@ -357,7 +355,8 @@ public class UserInput : MonoBehaviour
             }
             else
             {
-                if ((solitaire.topPos[i].GetComponent<Selectable>().suit == slot1.GetComponent<Selectable>().suit) && (solitaire.topPos[i].GetComponent<Selectable>().value == slot1.GetComponent<Selectable>().value - 1))
+                if ((solitaire.topPos[i].GetComponent<Selectable>().suit == slot1.GetComponent<Selectable>().suit) 
+                    && (solitaire.topPos[i].GetComponent<Selectable>().value == slot1.GetComponent<Selectable>().value - 1))
                 {
                     // if it is the last card (if it has no children)
                     if (HasNoChildren(slot1))
