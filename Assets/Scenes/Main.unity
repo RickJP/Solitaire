@@ -485,7 +485,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c928ce369c1c84150ad77f57825ee495, type: 3}
   - {fileID: 21300000, guid: 1d7f16246abc6468eaf466f3f8b13500, type: 3}
   - {fileID: 21300000, guid: b42fb012db22b4d9a9eca582674dd961, type: 3}
-  cardPrefab: {fileID: 1963778096280909342}
+  cardPrefab: {fileID: 1963778096280909342, guid: b383ff450473ace4cbbd85429fa03541,
+    type: 3}
   bottomPos:
   - {fileID: 908168605}
   - {fileID: 1731479493}
@@ -2941,12 +2942,6 @@ MonoBehaviour:
   suit: 
   value: 0
   row: 6
---- !u!1 &1963778096280909342 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1963778096280909342, guid: b383ff450473ace4cbbd85429fa03541,
-    type: 3}
-  m_PrefabInstance: {fileID: 6500869148375459637}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6500869148375459637
 PrefabInstance:
   m_ObjectHideFlags: 0
